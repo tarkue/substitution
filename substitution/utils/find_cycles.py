@@ -1,4 +1,4 @@
-from typing import List
+from typing import Tuple
 
 from substitution.base import BaseSubstitution
 from substitution.cycle import Cycle
@@ -8,6 +8,9 @@ def find_cycle_by_key(
     substition: BaseSubstitution, 
     key: int
 ) -> Cycle:
+    """
+    Find a cycle by key in a substitution.
+    """
     cycle = [key]
 
     last_item = None
@@ -21,7 +24,10 @@ def find_cycle_by_key(
 
 def find_all_cycles(
     substitution: BaseSubstitution
-)-> List[Cycle]:
+)-> Tuple[Cycle]:
+    """
+    Find all cycles in a substitution.
+    """
     visited = set()
     cycles = []
 
@@ -39,4 +45,4 @@ def find_all_cycles(
             visited |= setted_cycle
             cycles.append(cycle)
 
-    return cycles
+    return tuple(cycles)

@@ -1,4 +1,4 @@
-from typing import Iterator, Dict, List
+from typing import Dict, Tuple, Iterator, Union
 
 from substitution.utils.lcm import lcm_multiple
 from substitution.utils.find_cycles import find_all_cycles
@@ -6,12 +6,12 @@ from substitution.utils.find_cycles import find_all_cycles
 from substitution.base import BaseSubstitution, BaseCycle
 
 
-class Substitution(BaseSubstitution): 
-    def __init__(self, substition: Dict) -> None:
+class Substitution(BaseSubstitution):
+    def __init__(self, substition: Dict[int, int]) -> None:
         self.__substition = substition
 
 
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator[int]:
         return iter(self.__substition)
 
 
@@ -19,7 +19,7 @@ class Substitution(BaseSubstitution):
         return self.__substition[key]
     
 
-    def __setitem__(self, key: int, value: int):
+    def __setitem__(self, key: int, value: int) -> None:
         self.__substition[key] = value
 
 
@@ -46,13 +46,20 @@ class Substitution(BaseSubstitution):
 
     def __repr__(self) -> str:
         return repr(self.__substition)
-    
-    def __eq__(self, value):
-        return self.__substition.__eq__(value)
 
+
+    def __len__(self) -> int:
+        return len(self.__substition)
+    
+
+    def __eq__(self, value: Union['Substitution', Dict[int, int]]) -> bool:
+        if isinstance(value, Substitution):
+            return self.__substition == value.__substition
+        return self.__substition == value
+    
 
     @property
-    def cycles(self) -> List[BaseCycle]:
+    def cycles(self) -> Tuple[BaseCycle]:
         return find_all_cycles(self)
 
 
