@@ -1,0 +1,17 @@
+[project]
+name = "Substitution"
+version = "1.0.0"
+authors = [
+  { name="tarkue", email="mrlimax@icloud.com" },
+]
+description = "Implementing Substitutions with multiplication, exponentiation, comparison, length output, cycle search and power search"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/tarkue/substitution"
+Issues = "https://github.com/tarkue/substitution/issues"
